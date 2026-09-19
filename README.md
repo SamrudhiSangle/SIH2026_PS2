@@ -42,6 +42,7 @@ The backend exposes prediction endpoints for image uploads:
 - `POST /api/predict/ghostvision`
 - `POST /api/predict/subpipe`
 - `POST /api/predict/shipwreck`
+- `POST /api/predict/all`
 - `POST /api/predict/{model_name}` (generic model route)
 
 These endpoints:
@@ -52,6 +53,13 @@ These endpoints:
 - collect detection results
 - store prediction metadata in the database
 - clean up temporary uploaded data
+
+The combined endpoint runs the available model pipeline together:
+
+- GhostVision is the real Crab-Pot detector.
+- SubPipeMini2 is the real Pipeline detector.
+- Shipwreck remains an explicitly labelled mock until its real model artifact is available.
+- `/api/predict/all` returns each model result, a `combined_detections` array, and the reliability placeholder.
 
 ### 4. Database and persistence
 

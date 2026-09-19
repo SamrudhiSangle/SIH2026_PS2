@@ -62,7 +62,7 @@ def test_subpipe_model_availability():
 
 
 def test_shipwreck_mock_response(client):
-    response = client.post("/api/predict/shipwreck", files={"file": ("sample.png", b"not really an image", "image/png")})
+    response = client.post("/api/predict/shipwreck")
     assert response.status_code == 200
     body = response.json()
     assert body["model"] == "shipwreck"
@@ -98,6 +98,37 @@ def test_standard_prediction_response(client):
     assert "detections" in body
     assert "request_id" in body
     image_path.unlink(missing_ok=True)
+
+
+def test_all_models_prediction_response(client):
+    image_path = Path("test_all_models.png")
+    create_test_image(image_path)
+    with image_path.open("rb") as fh:
+        response = client.post(
+            "/api/predict/all",
+            files={"file": ("all_models.png", fh.read(), "image/png")},
+        )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "SUCCESS"
+    assert body["input_filename"] == "all_models.png"
+    assert {"ghostvision", "subpipe", "shipwreck"} == set(body["models"])
+    assert body["models"]["ghostvision"]["model_status"] == "READY"
+    assert body["models"]["subpipe"]["model_status"] == "READY"
+    assert body["models"]["shipwreck"]["status"] == "MOCK"
+    assert body["models"]["shipwreck"]["detections"] == []
+    assert "combined_detections" in body
+    assert body["metadata"]["reliability"]["status"] == "NOT_IMPLEMENTED"
+    image_path.unlink(missing_ok=True)
+
+
+def test_all_models_invalid_file(client):
+    response = client.post(
+        "/api/predict/all",
+        files={"file": ("bad.txt", b"hello world", "text/plain")},
+    )
+    assert response.status_code == 400
 
 
 def test_database_persistence(client):
