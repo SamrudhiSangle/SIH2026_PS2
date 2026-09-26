@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SONAROPS — Marine Intelligence &amp; Geospatial Cartography</title>
+<!-- Typography & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..700;1,300..700&amp;family=JetBrains+Mono:ital,wght@0,300..700;1,300..700&amp;family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#690005",
+            "surface-variant": "#30353f",
+            "secondary-fixed-dim": "#4fdbc8",
+            "on-secondary-fixed": "#00201c",
+            "surface-container-high": "#252a34",
+            "inverse-primary": "#00668a",
+            "primary": "#8ed5ff",
+            "outline": "#87929a",
+            "surface-container-highest": "#30353f",
+            "on-primary": "#00354a",
+            "error-container": "#93000a",
+            "on-background": "#dee2f0",
+            "on-surface-variant": "#bdc8d1",
+            "surface-container-lowest": "#090e17",
+            "on-surface": "#dee2f0",
+            "tertiary-container": "#a2b2cb",
+            "outline-variant": "#3e484f",
+            "on-primary-container": "#004965",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "#001e2c",
+            "on-secondary-container": "#003f38",
+            "surface-container-low": "#171c25",
+            "inverse-surface": "#dee2f0",
+            "on-tertiary-fixed": "#0b1c30",
+            "secondary": "#4fdbc8",
+            "background": "#0f131d",
+            "on-secondary-fixed-variant": "#005048",
+            "on-tertiary-container": "#35455a",
+            "surface-dim": "#0f131d",
+            "on-tertiary": "#213145",
+            "primary-fixed": "#c4e7ff",
+            "tertiary-fixed": "#d3e4fe",
+            "surface-tint": "#7bd0ff",
+            "on-secondary": "#003731",
+            "tertiary": "#bdcee7",
+            "error": "#ffb4ab",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "surface-bright": "#343944",
+            "inverse-on-surface": "#2c303b",
+            "on-primary-fixed-variant": "#004c69",
+            "primary-fixed-dim": "#7bd0ff",
+            "on-tertiary-fixed-variant": "#38485d",
+            "primary-container": "#38bdf8",
+            "secondary-fixed": "#71f8e4",
+            "surface": "#0f131d",
+            "secondary-container": "#04b4a2",
+            "surface-container": "#1b2029"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "margin": "4rem",
+            "space-md": "1rem",
+            "space-lg": "1.75rem",
+            "space-xs": "0.25rem",
+            "gutter": "2rem",
+            "space-xl": "3rem",
+            "margin-mobile": "1.25rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "headline-sm": ["Newsreader", "serif"],
+            "display-hero": ["Newsreader", "serif"],
+            "label-code": ["JetBrains Mono", "monospace"],
+            "body-md": ["Hanken Grotesk", "sans-serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "label-caps": ["Hanken Grotesk", "sans-serif"],
+            "display-hero-mobile": ["Newsreader", "serif"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "body-sm": ["Hanken Grotesk", "sans-serif"],
+            "body-lg": ["Hanken Grotesk", "sans-serif"],
+            "headline-lg": ["Newsreader", "serif"]
+          },
+          "fontSize": {
+            "headline-sm": ["1.375rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.005em", "fontWeight": "500" }],
+            "display-hero": ["4.5rem", { "lineHeight": "5rem", "letterSpacing": "-0.025em", "fontWeight": "400" }],
+            "label-code": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "400" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-md": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "label-caps": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.12em", "fontWeight": "600" }],
+            "display-hero-mobile": ["2.75rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.015em", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.875rem", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Radar sweep animation */
+    @keyframes radarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .radar-sweep {
+      animation: radarSweep 10s linear infinite;
+      transform-origin: center center;
+    }
+    /* Ping Pulse */
+    @keyframes pingSlow {
+      0% { transform: scale(0.85); opacity: 0.8; }
+      50% { transform: scale(1.6); opacity: 0.15; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .sonar-ping {
+      animation: pingSlow 3.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    }
+    /* Vector current drift */
+    @keyframes flowDrift {
+      0% { stroke-dashoffset: 200; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .flow-line {
+      stroke-dasharray: 6 14;
+      animation: flowDrift 8s linear infinite;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: #090e17; }
+    ::-webkit-scrollbar-thumb { background: #3e484f; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8ed5ff; }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body-sm antialiased overflow-hidden h-screen w-screen select-none">
+<!-- TOP APP BAR (From Shared Components JSON) -->
+<header class="bg-surface-container-lowest/85 dark:bg-surface-container-lowest/85 backdrop-blur-md docked full-width top-0 fixed z-50 shadow-[0_16px_36px_-12px_rgba(4,7,13,0.65)] flex justify-between items-center w-full px-margin md:px-margin py-space-sm h-14">
+<!-- Brand Anchor -->
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchView('view-landing')">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_#4fdbc8]"></span>
+<span class="text-headline-sm font-headline-sm tracking-widest text-on-surface dark:text-on-surface uppercase">SONAROPS</span>
+</div>
+<span class="hidden lg:inline-block h-3.5 w-px bg-outline-variant/40"></span>
+<span class="hidden lg:inline-block font-label-code text-label-code text-on-surface-variant tracking-wider">BATHYMETRIC CARTOGRAPHY SYSTEM · V4.2</span>
+</div>
+<!-- Navigation Architecture Links (Shared JSON: Platform, Technology, Explore, About) -->
+<nav class="hidden md:flex items-center space-x-8 text-label-code font-label-code">
+<button class="text-primary dark:text-primary border-b border-primary pb-1 transition-all duration-200 ease-out active:scale-95 flex items-center space-x-1.5" id="nav-btn-landing" onclick="switchView('view-landing')">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+<span>01 — EXPLORE</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors duration-200 active:scale-95 flex items-center space-x-1.5" id="nav-btn-workspace" onclick="switchView('view-workspace')">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant inline-block"></span>
+<span>02 — WORKSPACE</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors duration-200 active:scale-95 flex items-center space-x-1.5" id="nav-btn-detections" onclick="switchView('view-detections')">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant inline-block"></span>
+<span>03 — DETECTIONS</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors duration-200 active:scale-95 flex items-center space-x-1.5" id="nav-btn-summary" onclick="switchView('view-summary')">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant inline-block"></span>
+<span>04 — REPORT</span>
+</button>
+</nav>
+<!-- Trailing Actions (JSON: 'Open Workspace' & Trailing icons: 'layers', 'tune') -->
+<div class="flex items-center space-x-3 font-label-code text-label-code">
+<div class="hidden sm:flex items-center space-x-1 text-on-surface-variant bg-surface-container-low px-2 py-1 rounded border border-outline-variant/30">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+<span class="text-[10px] tracking-widest text-secondary font-label-code">SONAR RX ACTIVE</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/40 rounded bg-surface-container-low text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" onclick="toggleLayerDrawer()" title="Layer Stack">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant/40 rounded bg-surface-container-low text-on-surface-variant hover:text-primary hover:border-primary/40 transition-colors" onclick="toggleSensorHUD()" title="Sensor Tuner">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<button class="bg-surface-container-low border border-primary-container/40 text-on-surface hover:border-primary-container hover:bg-surface-container text-body-sm font-body-md px-3.5 py-1.5 rounded transition-all duration-200 ease-out active:scale-95" onclick="switchView('view-workspace')">
+        Open Workspace
+      </button>
+</div>
+</header>
+<!-- MAIN CANVAS & 4-VIEW CONTAINER (Fills absolute screen below top bar) -->
+<main class="relative w-full h-[calc(100vh-3.5rem)] mt-14 overflow-hidden bg-surface-container-lowest">
+<!-- ======================================================== -->
+<!-- VIEW 01: EXPLORE / LANDING                              -->
+<!-- ======================================================== -->
+<section class="view-panel absolute inset-0 w-full h-full flex flex-col justify-between transition-opacity duration-300 z-20" id="view-landing">
+<!-- Full-viewport Bathymetric Interactive Shader / SVG Canvas -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<!-- SVG Bathymetry Contours & Flow Particles -->
+<svg class="w-full h-full opacity-65" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="50%" cy="50%" id="depthGradient" r="55%">
+<stop offset="0%" stop-color="#14213d" stop-opacity="0.3"></stop>
+<stop offset="60%" stop-color="#0a101d" stop-opacity="0.85"></stop>
+<stop offset="100%" stop-color="#090e17" stop-opacity="1"></stop>
+</radialgradient>
+<lineargradient id="cyanGlow" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"></stop>
+<stop offset="100%" stop-color="#4fdbc8" stop-opacity="0.1"></stop>
+</lineargradient>
+</defs>
+<!-- Ground Backdrop Fill -->
+<rect fill="url(#depthGradient)" height="100%" width="100%"></rect>
+<!-- Depth Contour Isobars -->
+<g fill="none" stroke="rgba(142, 213, 255, 0.12)" stroke-width="1">
+<path d="M -100,200 C 300,120 600,450 1100,280 C 1500,120 1800,320 2200,240"></path>
+<path d="M -100,340 C 250,280 700,560 1200,420 C 1600,290 1900,490 2200,390" stroke="rgba(79, 219, 200, 0.18)"></path>
+<path d="M -100,490 C 200,440 800,680 1300,560 C 1700,430 2000,620 2300,540"></path>
+<path d="M -100,640 C 350,590 900,810 1400,690 C 1800,580 2050,780 2300,710" stroke="rgba(142, 213, 255, 0.14)"></path>
+<path d="M -100,790 C 400,740 1000,940 1500,830 C 1900,720 2100,910 2400,860"></path>
+</g>
+<!-- Vector Current Streamlines -->
+<g fill="none" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1.2">
+<path class="flow-line" d="M 0,380 C 420,320 780,620 1340,490 C 1700,380 2000,540 2300,460"></path>
+<path class="flow-line" d="M 0,510 C 380,470 850,710 1420,620 C 1820,530 2080,690 2350,610" style="animation-delay: -3s;"></path>
+<path class="flow-line" d="M 0,260 C 490,200 890,490 1490,380 C 1890,280 2120,440 2400,370" style="animation-delay: -5s;"></path>
+</g>
+<!-- Cartographic Crosshairs & Tick Grid -->
+<g stroke="rgba(148, 163, 184, 0.08)" stroke-width="1">
+<line x1="20%" x2="20%" y1="0" y2="100%"></line>
+<line x1="50%" x2="50%" y1="0" y2="100%"></line>
+<line x1="80%" x2="80%" y1="0" y2="100%"></line>
+<line x1="0" x2="100%" y1="33%" y2="33%"></line>
+<line x1="0" x2="100%" y1="66%" y2="66%"></line>
+</g>
+<!-- Sonar Ping Rings from Transducer origin -->
+<circle class="sonar-ping" cx="50%" cy="58%" fill="none" r="140" stroke="rgba(56, 189, 248, 0.3)"></circle>
+<circle cx="50%" cy="58%" fill="none" r="80" stroke="rgba(79, 219, 200, 0.4)"></circle>
+<circle cx="50%" cy="58%" fill="#38bdf8" r="4"></circle>
+</svg>
+<!-- Dynamic Radar Sweep Line -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] pointer-events-none rounded-full opacity-40">
+<div class="w-full h-full radar-sweep relative">
+<div class="absolute top-0 right-1/2 w-1/2 h-1/2 origin-bottom-right" style="background: conic-gradient(from 180deg at 100% 100%, rgba(56, 189, 248, 0.25) 0deg, transparent 65deg);"></div>
+</div>
+</div>
+</div>
+<!-- Top Overlay: Ephemeris & Hydrographic Datum -->
+<div class="relative z-10 px-margin pt-space-lg flex flex-wrap justify-between items-start text-label-code font-label-code text-on-surface-variant">
+<div class="bg-surface-container-lowest/80 border border-outline-variant/30 px-3.5 py-2 rounded backdrop-blur-md">
+<div class="flex items-center space-x-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface text-label-code">DATUM: WGS 84 / UTM ZONE 40N</span>
+<span class="text-outline-variant">|</span>
+<span>LAT: 23°24'42"N</span>
+<span>LON: 068°12'38"E</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest/80 border border-outline-variant/30 px-3.5 py-2 rounded backdrop-blur-md hidden sm:flex items-center space-x-4">
+<div>TIDE LEVEL: <span class="text-primary">+1.42m MHWS</span></div>
+<span class="text-outline-variant">|</span>
+<div>ACOUSTIC SOUND VELOCITY: <span class="text-on-surface font-semibold">1,524.8 m/s</span></div>
+<span class="text-outline-variant">|</span>
+<div>TIME (UTC): <span class="text-on-surface">11:42:09Z</span></div>
+</div>
+</div>
+<!-- Central Hero Section (Editorial Minimalist Cartography) -->
+<div class="relative z-10 px-margin flex flex-col items-center text-center my-auto">
+<span class="font-label-code text-label-code text-primary uppercase tracking-[0.25em] mb-4 flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+          Marine Intelligence &amp; Geospatial Cartography
+        </span>
+<h1 class="text-display-hero font-display-hero text-on-surface max-w-4xl tracking-tight leading-[1.05]">
+          See what lies beneath.
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-4 leading-relaxed font-normal">
+          High-resolution multibeam acoustic backscatter, autonomous anomaly segmentation, and planetary-scale ocean floor reconstructions.
+        </p>
+<!-- Direct Ocean Exploration CTAs -->
+<div class="flex flex-wrap items-center justify-center gap-4 mt-8">
+<button class="bg-surface-container-low border border-primary-container/60 hover:border-primary-container hover:bg-surface-container text-on-surface font-body-md text-body-md px-6 py-2.5 rounded shadow-[0_16px_36px_-12px_rgba(4,7,13,0.65)] flex items-center space-x-2 transition-all duration-200 ease-out active:scale-95 group" onclick="switchView('view-workspace')">
+<span class="tracking-wide">EXPLORE OCEAN WORKSPACE</span>
+<span class="material-symbols-outlined text-[18px] text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="bg-transparent border border-outline-variant/50 hover:border-outline-variant text-on-surface-variant hover:text-on-surface font-body-md text-body-md px-6 py-2.5 rounded transition-all duration-200 ease-out active:scale-95 flex items-center space-x-2" onclick="switchView('view-detections')">
+<span class="material-symbols-outlined text-[18px] text-secondary">radar</span>
+<span>VIEW LIVE DETECTIONS</span>
+</button>
+</div>
+</div>
+<!-- Sensor Bar: Real-time Telemetry Strip at Bottom of Landing -->
+<div class="relative z-10 w-full border-t border-outline-variant/30 bg-surface-container-lowest/90 backdrop-blur-md px-margin py-3">
+<div class="flex flex-wrap items-center justify-between text-label-code font-label-code text-on-surface-variant text-xs gap-y-2">
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-2">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span class="text-outline">SWATH:</span>
+<span class="text-on-surface">150.0 m</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-outline">DEPTH:</span>
+<span class="text-primary font-medium">184.2 m</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="text-outline">CHIRP PULSE:</span>
+<span class="text-on-surface">455 kHz (Wideband)</span>
+</div>
+<div class="hidden md:flex items-center space-x-2">
+<span class="text-outline">PING RATE:</span>
+<span class="text-on-surface">14 Hz</span>
+</div>
+</div>
+<!-- Acoustic Backscatter Waveform Visualizer -->
+<div class="flex items-center space-x-3">
+<span class="text-outline text-[11px]">BACKSCATTER FLUX:</span>
+<div class="flex items-end h-4 space-x-0.5">
+<span class="w-1 h-2 bg-primary/40 rounded-sm"></span>
+<span class="w-1 h-3.5 bg-primary/70 rounded-sm"></span>
+<span class="w-1 h-2 bg-primary/50 rounded-sm"></span>
+<span class="w-1 h-4 bg-secondary rounded-sm"></span>
+<span class="w-1 h-3 bg-secondary/80 rounded-sm"></span>
+<span class="w-1 h-1.5 bg-primary/30 rounded-sm"></span>
+<span class="w-1 h-3.5 bg-primary rounded-sm"></span>
+</div>
+<span class="text-secondary font-medium">-24.8 dB</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ======================================================== -->
+<!-- VIEW 02: OCEAN INTELLIGENCE WORKSPACE (Hero Console)     -->
+<!-- ======================================================== -->
+<section class="view-panel absolute inset-0 w-full h-full hidden opacity-0 transition-opacity duration-300 z-10 flex" id="view-workspace">
+<!-- LEFT: Ultra-compact vertical layer control HUD -->
+<aside class="relative z-30 h-full w-64 bg-surface-container-lowest/90 backdrop-blur-md border-r border-outline-variant/30 flex flex-col justify-between p-4 flex-shrink-0">
+<div>
+<!-- Panel Header -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/30 mb-4">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px] text-primary">layers</span>
+<span class="text-label-code font-label-code text-on-surface tracking-wider font-medium">CARTOGRAPHIC STACK</span>
+</div>
+<span class="text-label-code font-label-code text-on-surface-variant text-[11px]">8 ACTIVE</span>
+</div>
+<!-- Layer Toggles -->
+<div class="space-y-1.5 text-label-code font-label-code">
+<!-- Bathymetry Layer Toggle -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">BATHYMETRY</span>
+</div>
+<span class="text-[10px] text-primary">0-4000m</span>
+</label>
+<!-- Temperature -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-secondary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">TEMPERATURE</span>
+</div>
+<span class="text-[10px] text-secondary">SST 19.4°C</span>
+</label>
+<!-- Salinity -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface-variant">SALINITY</span>
+</div>
+<span class="text-[10px] text-on-surface-variant">35.2 PSU</span>
+</label>
+<!-- Currents Flow -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">CURRENTS</span>
+</div>
+<span class="text-[10px] text-primary">0.82 kt</span>
+</label>
+<!-- Argo Buoys -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-secondary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">ARGO BUOYS</span>
+</div>
+<span class="text-[10px] text-secondary font-mono">14 Units</span>
+</label>
+<!-- Glider Tracks -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-primary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">GLIDER TRACKS</span>
+</div>
+<span class="text-[10px] text-primary font-mono">AUV-04</span>
+</label>
+<!-- Anomalies -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-primary-container/30 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-primary-container text-primary-container focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-primary font-medium">ANOMALIES</span>
+</div>
+<span class="text-[10px] text-primary bg-primary-container/20 px-1 rounded">3 NEW</span>
+</label>
+<!-- Prediction Zones -->
+<label class="flex items-center justify-between p-2 rounded bg-surface-container-low/70 hover:bg-surface-container cursor-pointer border border-outline-variant/20 transition-colors">
+<div class="flex items-center space-x-2.5">
+<input checked="" class="form-checkbox h-3.5 w-3.5 rounded bg-transparent border-outline-variant text-secondary focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-on-surface">PREDICTION ZONES</span>
+</div>
+<span class="text-[10px] text-secondary">DISPERSAL</span>
+</label>
+</div>
+<!-- Sound Velocity Profile Sparkline -->
+<div class="mt-6 border border-outline-variant/20 bg-surface-container-low/50 p-3 rounded">
+<div class="flex items-center justify-between text-label-code font-label-code text-on-surface-variant text-[11px] mb-2">
+<span>SVP GRADIENT (0-500m)</span>
+<span class="text-primary">CTD-07</span>
+</div>
+<div class="h-14 flex items-end justify-between space-x-1">
+<div class="w-1.5 bg-primary/30 h-12 rounded-t-sm" title="0m: 1530 m/s"></div>
+<div class="w-1.5 bg-primary/40 h-10 rounded-t-sm" title="50m: 1515 m/s"></div>
+<div class="w-1.5 bg-primary/50 h-8 rounded-t-sm" title="100m: 1495 m/s"></div>
+<div class="w-1.5 bg-primary/60 h-6 rounded-t-sm" title="150m: 1485 m/s"></div>
+<div class="w-1.5 bg-secondary/70 h-5 rounded-t-sm" title="200m: 1480 m/s"></div>
+<div class="w-1.5 bg-secondary/80 h-6 rounded-t-sm" title="300m: 1488 m/s"></div>
+<div class="w-1.5 bg-secondary h-8 rounded-t-sm" title="500m: 1498 m/s"></div>
+</div>
+</div>
+</div>
+<!-- Coordinates HUD bottom left -->
+<div class="border-t border-outline-variant/30 pt-3 text-label-code font-label-code text-on-surface-variant text-[11px] space-y-1">
+<div class="flex justify-between">
+<span>GRID:</span>
+<span class="text-on-surface">UTM 40N / WGS84</span>
+</div>
+<div class="flex justify-between">
+<span>SCALE:</span>
+<span class="text-on-surface">1 : 25,000</span>
+</div>
+<div class="flex justify-between">
+<span>LATENCY:</span>
+<span class="text-secondary">42 ms (Direct Uplink)</span>
+</div>
+</div>
+</aside>
+<!-- CENTER: Interactive Map Viewport Canvas -->
+<div class="relative flex-1 h-full overflow-hidden bg-surface-container-lowest cursor-crosshair" id="workspace-canvas">
+<!-- Synthetic Ocean Map Topology with Depth Color Ramp -->
+<svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialgradient cx="55%" cy="45%" id="oceanCenter" r="65%">
+<stop offset="0%" stop-color="#111c2e"></stop>
+<stop offset="45%" stop-color="#0b1320"></stop>
+<stop offset="100%" stop-color="#080c14"></stop>
+</radialgradient>
+<!-- Pattern for Bathymetric Depth Shading -->
+<pattern height="40" id="bathymetryGrid" patternunits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(148, 163, 184, 0.05)" stroke-width="0.8"></path>
+</pattern>
+</defs>
+<!-- Ocean Depth Field -->
+<rect fill="url(#oceanCenter)" height="100%" width="100%"></rect>
+<rect fill="url(#bathymetryGrid)" height="100%" width="100%"></rect>
+<!-- High-resolution Bathymetric Ridge Features & Canyons -->
+<g fill="none" stroke="rgba(142, 213, 255, 0.16)" stroke-width="1.2">
+<!-- Ridge Contour Lines -->
+<path d="M 120,60 C 280,180 340,320 480,390 S 780,510 940,430 S 1220,580 1480,520"></path>
+<path d="M 160,110 C 310,210 390,340 520,420 S 820,530 980,470 S 1250,610 1520,560" stroke="rgba(79, 219, 200, 0.22)"></path>
+<path d="M 200,160 C 340,250 430,370 560,450 S 850,560 1020,500 S 1290,650 1560,600"></path>
+<path d="M 240,210 C 370,290 470,400 600,480 S 890,590 1060,540 S 1320,690 1600,640" stroke="rgba(142, 213, 255, 0.1)"></path>
+</g>
+<!-- Current Flow Vectors (Dynamic dotted lines) -->
+<g fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="1.5">
+<path class="flow-line" d="M 220,540 C 440,490 720,620 1050,550 S 1420,440 1700,510"></path>
+<path class="flow-line" d="M 180,680 C 410,640 760,740 1120,670 S 1490,590 1780,630" style="animation-delay: -2.5s;"></path>
+<path class="flow-line" d="M 260,380 C 510,320 820,460 1190,390 S 1540,310 1820,380" style="animation-delay: -4s;"></path>
+</g>
+<!-- AUV Glider Track Line -->
+<polyline fill="none" opacity="0.8" points="290,280 430,350 620,410 740,380 910,480" stroke="#4fdbc8" stroke-dasharray="4 4" stroke-width="1.5"></polyline>
+<!-- AUV Icon at terminus -->
+<circle cx="910" cy="480" fill="#4fdbc8" r="5"></circle>
+<text fill="#4fdbc8" font-family="'JetBrains Mono'" font-size="10" x="922" y="484">AUV GLIDER 04 [DEPTH 184m]</text>
+<!-- Argo Floats Coordinates -->
+<g>
+<circle cx="480" cy="220" fill="#8ed5ff" r="4"></circle>
+<text fill="#8ed5ff" font-family="'JetBrains Mono'" font-size="9" x="492" y="224">ARGO-69032 (PROFILING)</text>
+<circle cx="1180" cy="310" fill="#8ed5ff" r="4"></circle>
+<text fill="#8ed5ff" font-family="'JetBrains Mono'" font-size="9" x="1192" y="314">ARGO-69034 (SURFACING)</text>
+</g>
+<!-- Anomaly Dispersion Prediction Polygon (Ghost net drift cone) -->
+<polygon fill="rgba(56, 189, 248, 0.08)" points="680,440 850,380 960,420 880,510" stroke="rgba(56, 189, 248, 0.35)" stroke-dasharray="3 3" stroke-width="1"></polygon>
+<text fill="rgba(56, 189, 248, 0.6)" font-family="'JetBrains Mono'" font-size="9" text-anchor="middle" x="810" y="445">DISPERSION ENVELOPE (72h DRIFT)</text>
+</svg>
+<!-- Dynamic Rotating Acoustic Sweep from central vessel -->
+<div class="absolute top-[48%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none rounded-full">
+<div class="w-full h-full radar-sweep relative">
+<div class="absolute top-0 right-1/2 w-1/2 h-1/2 origin-bottom-right" style="background: conic-gradient(from 180deg at 100% 100%, rgba(56, 189, 248, 0.2) 0deg, transparent 50deg);"></div>
+</div>
+</div>
+<!-- INTERACTIVE ANOMALY RETICLES (Clickable Georeferenced Targets) -->
+<!-- Anomaly A-001 (Ghost Net) -->
+<div class="absolute top-[44%] left-[45%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20" onclick="selectAnomaly('A-001')">
+<div class="relative flex items-center justify-center">
+<span class="w-10 h-10 rounded-full border border-primary-container sonar-ping absolute"></span>
+<span class="w-5 h-5 rounded-full border border-primary-container bg-surface-container-low flex items-center justify-center group-hover:scale-125 transition-transform shadow-[0_0_12px_#38bdf8]">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</span>
+<div class="absolute top-7 left-1/2 -translate-x-1/2 bg-surface-container-lowest/90 border border-primary-container/40 px-2 py-0.5 rounded text-[10px] font-label-code text-primary whitespace-nowrap shadow-lg">
+              A-001 · GHOST NET (92.4%)
+            </div>
+</div>
+</div>
+<!-- Anomaly A-002 (Metallic Drum) -->
+<div class="absolute top-[68%] left-[62%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20" onclick="selectAnomaly('A-002')">
+<div class="relative flex items-center justify-center">
+<span class="w-4 h-4 rounded-full border border-secondary bg-surface-container-low flex items-center justify-center group-hover:scale-125 transition-transform">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</span>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 bg-surface-container-lowest/90 border border-outline-variant px-1.5 py-0.5 rounded text-[10px] font-label-code text-secondary whitespace-nowrap">
+              A-002 · METALLIC DRUM
+            </div>
+</div>
+</div>
+<!-- Anomaly A-003 (Unidentified Target) -->
+<div class="absolute top-[28%] left-[71%] -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20" onclick="selectAnomaly('A-003')">
+<div class="relative flex items-center justify-center">
+<span class="w-4 h-4 rounded-full border border-outline bg-surface-container-low flex items-center justify-center group-hover:scale-125 transition-transform">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+</span>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 bg-surface-container-lowest/90 border border-outline-variant px-1.5 py-0.5 rounded text-[10px] font-label-code text-on-surface-variant whitespace-nowrap">
+              A-003 · UNIDENTIFIED
+            </div>
+</div>
+</div>
+<!-- Floating Cartographic Scale Reticle -->
+<div class="absolute top-4 left-4 z-20 bg-surface-container-lowest/80 border border-outline-variant/30 px-3 py-1.5 rounded backdrop-blur-md text-label-code font-label-code text-on-surface-variant flex items-center space-x-3">
+<div class="flex flex-col">
+<div class="w-24 h-1 border-b border-l border-r border-primary"></div>
+<span class="text-[9px] mt-0.5 text-primary text-center">500 METERS</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="text-[10px]">SOUNDING: MULTIBEAM EM2040</span>
+</div>
+<!-- Real-time Crosshair Telemetry Tooltip (Follows Cursor coordinates) -->
+<div class="absolute bottom-16 left-4 z-20 bg-surface-container-lowest/85 border border-outline-variant/30 px-3 py-1.5 rounded backdrop-blur-md text-label-code font-label-code text-[11px] text-on-surface-variant flex items-center space-x-3 pointer-events-none" id="map-telemetry-badge">
+<span>CURSOR: 23°24'11"N 068°14'49"E</span>
+<span class="text-outline-variant">·</span>
+<span>DEPTH: <strong class="text-primary font-normal">184.4 m</strong></span>
+<span class="text-outline-variant">·</span>
+<span>SUBSTRATE: <strong class="text-secondary font-normal">SILT / GRAVEL</strong></span>
+</div>
+<!-- BOTTOM: Sleek Temporal Scrubber Bar -->
+<div class="absolute bottom-0 inset-x-0 h-12 bg-surface-container-lowest/90 backdrop-blur-md border-t border-outline-variant/30 z-20 px-6 flex items-center justify-between">
+<div class="flex items-center space-x-3 text-label-code font-label-code">
+<button class="w-7 h-7 rounded border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">play_arrow</span>
+</button>
+<span class="text-[11px] text-on-surface-variant">HISTORICAL REPLAY</span>
+</div>
+<!-- Timeline Track -->
+<div class="flex-1 max-w-xl mx-8 relative flex items-center">
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[88%]"></div>
+</div>
+<!-- Temporal Nodes -->
+<div class="absolute inset-x-0 flex justify-between text-label-code font-label-code text-[10px] text-on-surface-variant -top-4">
+<span>2020</span>
+<span>2022</span>
+<span>2024</span>
+<span class="text-primary font-semibold">2026 [ACTIVE]</span>
+</div>
+<!-- Slider Thumb -->
+<div class="absolute left-[88%] w-3 h-3 bg-primary rounded-full border border-surface-container-lowest shadow-[0_0_8px_#8ed5ff] -translate-x-1/2 cursor-pointer"></div>
+</div>
+<div class="flex items-center space-x-4 text-label-code font-label-code text-[11px] text-on-surface-variant">
+<span>DRIFT: <span class="text-secondary">+0.14 kt WNW</span></span>
+<span class="text-outline-variant">|</span>
+<span class="text-primary">SYNC: LIVE AUV STREAM</span>
+</div>
+</div>
+</div>
+<!-- RIGHT: Slide-in Contextual Intelligence Panel (Anomaly A-001) -->
+<aside class="relative z-30 h-full w-96 bg-surface-container-lowest/95 backdrop-blur-md border-l border-outline-variant/30 p-5 flex flex-col justify-between overflow-y-auto flex-shrink-0 transition-transform duration-300" id="context-panel">
+<div>
+<!-- Header and Close trigger -->
+<div class="flex items-start justify-between pb-3 border-b border-outline-variant/30">
+<div>
+<span class="text-label-code font-label-code text-primary text-[11px] tracking-widest uppercase">CLASSIFIED TARGET</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mt-0.5" id="panel-title">ANOMALY A-001</h2>
+<span class="text-label-code font-label-code text-on-surface-variant text-xs" id="panel-subtitle">GHOST NET CONGLOMERATE</span>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1" onclick="closeAnomalyPanel()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Confidence & Status Metric -->
+<div class="grid grid-cols-2 gap-3 my-4">
+<!-- Confidence ring card -->
+<div class="bg-surface-container-low border border-outline-variant/30 p-3 rounded flex items-center space-x-3">
+<div class="relative w-12 h-12 flex-shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="92.4, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-label-code text-[10px] text-on-surface font-semibold">
+                  92%
+                </div>
+</div>
+<div>
+<span class="text-label-code font-label-code text-on-surface-variant text-[10px] block">AI CONFIDENCE</span>
+<span class="text-label-code font-label-code text-primary font-medium text-xs">92.4% MATCH</span>
+</div>
+</div>
+<!-- Target Status card -->
+<div class="bg-surface-container-low border border-outline-variant/30 p-3 rounded flex flex-col justify-center">
+<span class="text-label-code font-label-code text-on-surface-variant text-[10px] block">REVIEW STATUS</span>
+<div class="flex items-center space-x-1.5 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+<span class="text-label-code font-label-code text-secondary-fixed-dim font-medium text-[11px]">REQUIRES REVIEW</span>
+</div>
+</div>
+</div>
+<!-- Hydrographic Target Parameters Ledger -->
+<div class="border border-outline-variant/20 bg-surface-container-low/40 rounded divide-y divide-outline-variant/20 font-label-code text-label-code text-xs">
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">SOUNDING DEPTH:</span>
+<span class="text-on-surface font-medium">184.2 METERS</span>
+</div>
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">GEOLOCATION:</span>
+<span class="text-on-surface">23.41° N, 68.21° E</span>
+</div>
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">PROJECTION:</span>
+<span class="text-on-surface">UTM ZONE 40N</span>
+</div>
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">BENTHIC SUBSTRATE:</span>
+<span class="text-on-surface">Riparian Sand / Calcified</span>
+</div>
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">SEGMENTATION MODEL:</span>
+<span class="text-primary">ConvNet v4.2 + YOLO-Subsea</span>
+</div>
+<div class="p-2.5 flex justify-between">
+<span class="text-on-surface-variant">TRANSMISSION FREQ:</span>
+<span class="text-on-surface">455 kHz Side-Scan</span>
+</div>
+</div>
+<!-- Sonar Sensor Thumbnail Crop -->
+<div class="mt-4 border border-outline-variant/30 rounded p-2.5 bg-surface-container-low/60">
+<div class="flex items-center justify-between text-label-code font-label-code text-[10px] text-on-surface-variant mb-1.5">
+<span>WATERFALL CROP [1.4m SHADOW]</span>
+<span class="text-secondary font-medium">CHIRP 04</span>
+</div>
+<div class="h-24 bg-surface-container-lowest rounded border border-outline-variant/20 relative overflow-hidden flex items-center justify-center">
+<!-- Visual Sonar Representation -->
+<div class="w-full h-full opacity-60 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:10px_10px]"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-16 h-8 border border-dashed border-primary bg-primary/10 rounded flex items-center justify-center">
+<span class="text-label-code font-label-code text-[9px] text-primary">MESH TANGLE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Trigger Group -->
+<div class="space-y-2 pt-4 border-t border-outline-variant/30 mt-4">
+<button class="w-full bg-surface-container-low border border-primary/50 hover:border-primary hover:bg-surface-container text-on-surface text-label-code font-label-code py-2 rounded text-xs transition-colors flex items-center justify-center space-x-2" onclick="switchView('view-detections')">
+<span class="material-symbols-outlined text-[16px] text-primary">visibility</span>
+<span>VIEW DETECTION WORKSPACE</span>
+</button>
+<button class="w-full bg-surface-container-low border border-outline-variant/40 hover:border-outline-variant text-on-surface-variant hover:text-on-surface text-label-code font-label-code py-2 rounded text-xs transition-colors flex items-center justify-center space-x-2" onclick="simulateDispersal()">
+<span class="material-symbols-outlined text-[16px] text-secondary">waves</span>
+<span>PREDICT DISPERSAL IMPACT</span>
+</button>
+<button class="w-full bg-surface-container-low border border-outline-variant/40 hover:border-outline-variant text-on-surface-variant hover:text-on-surface text-label-code font-label-code py-2 rounded text-xs transition-colors flex items-center justify-center space-x-2" onclick="addToMissionReport()">
+<span class="material-symbols-outlined text-[16px]">post_add</span>
+<span>ADD TO MISSION REPORT</span>
+</button>
+</div>
+</aside>
+</section>
+<!-- ======================================================== -->
+<!-- VIEW 03: DETECTION + PREDICTION WORKSPACE               -->
+<!-- ======================================================== -->
+<section class="view-panel absolute inset-0 w-full h-full hidden opacity-0 transition-opacity duration-300 z-10 flex flex-col md:flex-row overflow-hidden" id="view-detections">
+<!-- LEFT 60%: High-fidelity Side-Scan Sonar Waterfall Workstation -->
+<div class="w-full md:w-[60%] h-full bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col justify-between p-4 md:p-6 relative">
+<!-- Header Controls for Sonar Canvas -->
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant/30 z-10">
+<div class="flex items-center space-x-3 font-label-code text-label-code">
+<span class="text-on-surface font-medium text-body-md font-headline-sm">ACOUSTIC WATERFALL INSPECTION</span>
+<span class="text-outline-variant">|</span>
+<span class="text-on-surface-variant text-xs">PORT / STARBOARD SWATH 75m</span>
+</div>
+<!-- Raw vs AI Segmented Toggle -->
+<div class="flex items-center bg-surface-container-low border border-outline-variant/40 rounded p-0.5 text-label-code font-label-code text-xs">
+<button class="px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface transition-colors" id="toggle-raw" onclick="setSonarView('raw')">RAW CHIRP</button>
+<button class="px-2.5 py-1 rounded bg-primary-container/20 text-primary border border-primary-container/40 transition-colors" id="toggle-seg" onclick="setSonarView('segmented')">AI SEGMENTED</button>
+</div>
+</div>
+<!-- High-Fidelity Sonar Waterfall Simulation Canvas -->
+<div class="relative flex-1 my-3 bg-[#080d15] rounded border border-outline-variant/30 overflow-hidden flex items-center justify-center">
+<!-- Sonar Waterfall Noise & Scanline Graphics -->
+<div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:12px_12px] opacity-40"></div>
+<!-- Center Nadir Line (The water column gap directly under vessel) -->
+<div class="absolute inset-y-0 left-1/2 w-4 -translate-x-1/2 bg-[#04070c] border-x border-outline-variant/20 flex flex-col justify-between items-center py-2 text-[8px] font-label-code text-outline-variant">
+<span>NADIR</span>
+<span>0m</span>
+<span>NADIR</span>
+</div>
+<!-- Synthetic Mesh Sonar Backscatter Target (A-001) -->
+<div class="relative z-10 w-96 h-64 border border-primary/40 bg-surface-container-low/40 rounded p-3 backdrop-blur-[2px]" id="sonar-target-render">
+<!-- Measurement Reticle Ticks -->
+<div class="absolute -top-3 left-2 font-label-code text-[10px] text-primary bg-surface-container-lowest px-1.5 border border-primary/40">
+              TARGET A-001 · 18.2m × 6.4m
+            </div>
+<!-- Acoustic Shadow Projection (Dark zone behind object) -->
+<div class="absolute right-4 top-8 w-44 h-32 bg-[#05080e] border border-outline-variant/20 rounded flex items-center justify-center">
+<span class="font-label-code text-[9px] text-outline-variant">ACOUSTIC SHADOW (1.4m RELIEF)</span>
+</div>
+<!-- Tangled Fiber AI Segment overlay -->
+<svg class="absolute inset-0 w-full h-full" id="ai-segment-overlay" xmlns="http://www.w3.org/2000/svg">
+<path d="M 40,80 Q 70,50 110,75 T 180,90 T 210,130 T 160,170 T 80,140 Z" fill="rgba(56, 189, 248, 0.25)" stroke="#38bdf8" stroke-dasharray="2 2" stroke-width="1.5"></path>
+<circle cx="110" cy="75" fill="#38bdf8" r="3"></circle>
+<circle cx="180" cy="90" fill="#38bdf8" r="3"></circle>
+<circle cx="160" cy="170" fill="#38bdf8" r="3"></circle>
+<line stroke="#4fdbc8" stroke-dasharray="4 4" stroke-width="1" x1="40" x2="210" y1="80" y2="130"></line>
+<text fill="#4fdbc8" font-family="'JetBrains Mono'" font-size="9" text-anchor="middle" x="125" y="115">SPAN: 18.2m</text>
+</svg>
+<!-- Coordinate Crosshair overlay -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none">
+<div class="w-full h-px bg-primary absolute top-1/2"></div>
+<div class="h-full w-px bg-primary absolute left-1/2"></div>
+</div>
+</div>
+<!-- Range ticks horizontal -->
+<div class="absolute bottom-2 inset-x-8 flex justify-between font-label-code text-[9px] text-on-surface-variant">
+<span>-75m (PORT)</span>
+<span>-50m</span>
+<span>-25m</span>
+<span class="text-primary font-bold">0m (NADIR)</span>
+<span>+25m</span>
+<span>+50m</span>
+<span>+75m (STBD)</span>
+</div>
+</div>
+<!-- Bottom Waterfall Status Bar -->
+<div class="flex items-center justify-between text-label-code font-label-code text-on-surface-variant text-xs pt-1">
+<div class="flex items-center space-x-4">
+<span>VESSEL SPEED: <span class="text-on-surface">3.8 KTS</span></span>
+<span>ALTITUDE: <span class="text-on-surface">18.4 M</span></span>
+<span>BACKSCATTER INTENSITY: <span class="text-primary font-semibold">-19.2 dB</span></span>
+</div>
+<span class="text-[10px] text-secondary font-mono">FILE: 20261014_CHIRP_455K.XTF</span>
+</div>
+</div>
+<!-- RIGHT 40%: AI Interpretation & Multi-Model Inference Panel -->
+<div class="w-full md:w-[40%] h-full bg-surface-container-lowest flex flex-col justify-between p-4 md:p-6 overflow-y-auto">
+<div>
+<!-- Panel Header -->
+<div class="pb-3 border-b border-outline-variant/30">
+<span class="font-label-code text-label-code text-secondary text-xs tracking-wider">NEURAL INFERENCE ENGINE</span>
+<h2 class="text-headline-md font-headline-md text-on-surface mt-1">Classification Breakdown</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Model: Subsea Multimodal Vision-Sonar ConvNet v4.2</p>
+</div>
+<!-- Confidence Decomposition Bars -->
+<div class="mt-4 space-y-3 font-label-code text-label-code text-xs">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-on-surface-variant">DETECTOR CONFIDENCE (SYNTHETIC FIBER):</span>
+<span class="text-primary font-medium">92.4%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92.4%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-on-surface-variant">SEABED CONTRAST RATIO:</span>
+<span class="text-secondary font-medium">88.2%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 88.2%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-on-surface-variant">ACOUSTIC SHADOW RELIEF CORRELATION:</span>
+<span class="text-primary font-medium">94.6%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 94.6%"></div>
+</div>
+</div>
+</div>
+<!-- Physical Object Dimensions -->
+<div class="mt-5 p-3.5 bg-surface-container-low border border-outline-variant/30 rounded font-label-code text-label-code">
+<span class="text-[10px] text-on-surface-variant uppercase tracking-wider block mb-2">GEOMETRIC ESTIMATES</span>
+<div class="grid grid-cols-2 gap-3 text-xs">
+<div>
+<span class="text-outline text-[11px]">MAJOR AXIS:</span>
+<div class="text-on-surface font-semibold text-body-md font-headline-sm">18.2 METERS</div>
+</div>
+<div>
+<span class="text-outline text-[11px]">MINOR AXIS:</span>
+<div class="text-on-surface font-semibold text-body-md font-headline-sm">6.4 METERS</div>
+</div>
+<div>
+<span class="text-outline text-[11px]">ESTIMATED TANGLE AREA:</span>
+<div class="text-primary font-semibold">84.5 m²</div>
+</div>
+<div>
+<span class="text-outline text-[11px]">ACOUSTIC ELEVATION:</span>
+<div class="text-secondary font-semibold">+1.40 m above bed</div>
+</div>
+</div>
+</div>
+<!-- Prediction Sequence Pipeline Progress Indicator -->
+<div class="mt-5">
+<span class="font-label-code text-label-code text-[10px] text-on-surface-variant uppercase tracking-wider block mb-2">PIPELINE VERIFICATION STATE</span>
+<div class="flex items-center justify-between text-label-code font-label-code text-[10px] border border-outline-variant/30 rounded p-2 bg-surface-container-low/50">
+<span class="text-secondary font-medium">DETECTED</span>
+<span class="text-outline-variant">→</span>
+<span class="text-secondary font-medium">VALIDATED</span>
+<span class="text-outline-variant">→</span>
+<span class="text-secondary font-medium">GEOLOCATED</span>
+<span class="text-outline-variant">→</span>
+<span class="text-primary font-semibold">HUMAN REVIEW</span>
+</div>
+</div>
+</div>
+<!-- Operator Decision Action Group -->
+<div class="pt-4 border-t border-outline-variant/30 mt-4 space-y-2">
+<span class="text-label-code font-label-code text-[10px] text-outline uppercase block mb-1">OPERATOR AUTHORIZATION:</span>
+<div class="grid grid-cols-2 gap-2 font-label-code text-label-code text-xs">
+<button class="bg-secondary/10 border border-secondary text-secondary hover:bg-secondary/20 py-2 rounded transition-colors flex items-center justify-center space-x-1" onclick="handleDecision('CONFIRMED')">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>CONFIRM DETECTION</span>
+</button>
+<button class="bg-surface-container-low border border-error/40 text-error hover:bg-surface-container py-2 rounded transition-colors flex items-center justify-center space-x-1" onclick="handleDecision('REJECTED')">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>REJECT (NOISE)</span>
+</button>
+<button class="bg-surface-container-low border border-outline-variant hover:border-on-surface text-on-surface-variant hover:text-on-surface py-2 rounded transition-colors" onclick="handleDecision('RECLASSIFIED')">
+              CORRECT CLASS
+            </button>
+<button class="bg-surface-container-low border border-outline-variant hover:border-on-surface text-on-surface-variant hover:text-on-surface py-2 rounded transition-colors" onclick="handleDecision('UNKNOWN')">
+              MARK UNKNOWN
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- ======================================================== -->
+<!-- VIEW 04: REPORT / MISSION SUMMARY                       -->
+<!-- ======================================================== -->
+<section class="view-panel absolute inset-0 w-full h-full hidden opacity-0 transition-opacity duration-300 z-10 p-4 md:p-8 flex flex-col justify-between overflow-y-auto" id="view-summary">
+<div class="max-w-7xl mx-auto w-full space-y-6">
+<!-- Header & Breadcrumb -->
+<div class="flex flex-wrap items-center justify-between pb-4 border-b border-outline-variant/30 gap-4">
+<div>
+<span class="font-label-code text-label-code text-primary uppercase tracking-widest text-xs">MISSION DEBRIEF &amp; CARTOGRAPHIC REGISTRY</span>
+<h1 class="text-headline-lg font-headline-lg text-on-surface mt-1">Arabian Sea Transect 07</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Platform: R/V NEUSTON 04 · Hydrographic Multi-Beam Campaign · October 2026</p>
+</div>
+<!-- Export Action Trigger -->
+<button class="bg-surface-container-low border border-primary-container/60 hover:border-primary-container hover:bg-surface-container text-on-surface font-body-md text-body-md px-4 py-2 rounded flex items-center space-x-2 transition-all active:scale-95 shadow-[0_16px_36px_-12px_rgba(4,7,13,0.65)]" onclick="downloadReport()">
+<span class="material-symbols-outlined text-[18px] text-primary">download</span>
+<span>GENERATE CARTOGRAPHIC REPORT (PDF/GIS)</span>
+</button>
+</div>
+<!-- Mission KPI Indicators -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-surface-container-low border border-outline-variant/30 p-4 rounded">
+<span class="text-label-code font-label-code text-on-surface-variant text-[11px] block">TOTAL DETECTIONS</span>
+<div class="text-headline-md font-headline-md text-on-surface mt-1">12 Anomalies</div>
+<span class="text-label-code font-label-code text-primary text-[10px] mt-1 block">Covering 142.8 km² swath</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/30 p-4 rounded">
+<span class="text-label-code font-label-code text-on-surface-variant text-[11px] block">OPERATOR ATTENTION</span>
+<div class="text-headline-md font-headline-md text-secondary-fixed-dim mt-1">4 Requiring Review</div>
+<span class="text-label-code font-label-code text-secondary text-[10px] mt-1 block">ConvNet flags verified &gt; 85%</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/30 p-4 rounded">
+<span class="text-label-code font-label-code text-on-surface-variant text-[11px] block">NAVIGATIONAL HAZARDS</span>
+<div class="text-headline-md font-headline-md text-primary mt-1">3 High Priority</div>
+<span class="text-label-code font-label-code text-outline text-[10px] mt-1 block">Acoustic relief &gt; 1.0 meter</span>
+</div>
+</div>
+<!-- Precision Ledger Table (Minimalist Rule-Divided Museum Style) -->
+<div class="border border-outline-variant/30 rounded bg-surface-container-low/40 overflow-hidden">
+<div class="p-3 bg-surface-container-low border-b border-outline-variant/30 flex justify-between items-center">
+<span class="text-label-code font-label-code text-on-surface font-semibold text-xs tracking-wider">BATHYMETRIC ANOMALY REGISTRY TABLE</span>
+<span class="text-label-code font-label-code text-on-surface-variant text-[11px]">DATUM: WGS 84 / UTM 40N</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-label-code text-label-code text-xs">
+<thead class="bg-surface-container-lowest/80 text-on-surface-variant border-b border-outline-variant/20">
+<tr>
+<th class="p-3">TARGET ID</th>
+<th class="p-3">CLASSIFICATION</th>
+<th class="p-3">SOUNDING DEPTH</th>
+<th class="p-3">GEOLOCATION</th>
+<th class="p-3">AI CONFIDENCE</th>
+<th class="p-3">RISK SCORE</th>
+<th class="p-3">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-low/70 transition-colors cursor-pointer" onclick="switchView('view-detections')">
+<td class="p-3 text-primary font-medium">A-001</td>
+<td class="p-3 text-on-surface">Ghost Net Conglomerate</td>
+<td class="p-3 text-on-surface-variant">184.2 m</td>
+<td class="p-3 text-on-surface-variant font-mono">23.41° N, 68.21° E</td>
+<td class="p-3 text-primary font-semibold">92.4%</td>
+<td class="p-3 text-error font-medium">HIGH (HAZARD)</td>
+<td class="p-3"><span class="px-2 py-0.5 rounded bg-secondary-container/20 text-secondary border border-secondary-container/40">REQUIRES REVIEW</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="p-3 text-primary font-medium">A-002</td>
+<td class="p-3 text-on-surface">Submerged Metallic Drum</td>
+<td class="p-3 text-on-surface-variant">212.0 m</td>
+<td class="p-3 text-on-surface-variant font-mono">23.38° N, 68.29° E</td>
+<td class="p-3 text-primary font-semibold">88.7%</td>
+<td class="p-3 text-outline font-medium">MEDIUM</td>
+<td class="p-3"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">LOGGED</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="p-3 text-primary font-medium">A-003</td>
+<td class="p-3 text-on-surface">Unidentified Benthic Anomaly</td>
+<td class="p-3 text-on-surface-variant">340.5 m</td>
+<td class="p-3 text-on-surface-variant font-mono">23.49° N, 68.32° E</td>
+<td class="p-3 text-on-surface font-semibold">64.1%</td>
+<td class="p-3 text-outline font-medium">LOW</td>
+<td class="p-3"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">PENDING SWATH</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="p-3 text-primary font-medium">A-004</td>
+<td class="p-3 text-on-surface">Anchor Scour Trenching</td>
+<td class="p-3 text-on-surface-variant">95.0 m</td>
+<td class="p-3 text-on-surface-variant font-mono">23.25° N, 68.10° E</td>
+<td class="p-3 text-primary font-semibold">96.0%</td>
+<td class="p-3 text-outline font-medium">LOW</td>
+<td class="p-3"><span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant border border-outline-variant/40">ARCHIVED</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- FOOTER (Exact Match from Shared Components JSON) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 docked full-width bottom flat no shadows flex flex-col md:flex-row justify-between items-center w-full px-margin py-space-lg text-label-code font-label-code mt-8">
+<!-- Brand copyright text from JSON -->
+<div class="text-on-surface-variant dark:text-on-surface-variant mb-3 md:mb-0">
+          © 2025 SONAROPS Marine Intelligence. Archival Bathymetric Cartography.
+        </div>
+<!-- Links from JSON: Coordinate Datum, Ephemeris Index, Bathymetry Protocols, Legal Registry -->
+<div class="flex flex-wrap items-center space-x-6 text-on-surface-variant dark:text-on-surface-variant">
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Coordinate Datum</a>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Ephemeris Index</a>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Bathymetry Protocols</a>
+<a class="hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">Legal Registry</a>
+</div>
+</footer>
+</section>
+</main>
+<!-- Interactive Logic for Instant Switching and Dynamic HUD Telemetry -->
+<script>
+    // Four Core Views
+    const views = {
+      'view-landing': {
+        panel: document.getElementById('view-landing'),
+        nav: document.getElementById('nav-btn-landing')
+      },
+      'view-workspace': {
+        panel: document.getElementById('view-workspace'),
+        nav: document.getElementById('nav-btn-workspace')
+      },
+      'view-detections': {
+        panel: document.getElementById('view-detections'),
+        nav: document.getElementById('nav-btn-detections')
+      },
+      'view-summary': {
+        panel: document.getElementById('view-summary'),
+        nav: document.getElementById('nav-btn-summary')
+      }
+    };
+
+    function switchView(targetViewId) {
+      Object.keys(views).forEach(key => {
+        const item = views[key];
+        if (key === targetViewId) {
+          item.panel.classList.remove('hidden');
+          setTimeout(() => item.panel.classList.remove('opacity-0'), 10);
+          
+          // Apply style_active_navigation
+          item.nav.className = "text-primary dark:text-primary border-b border-primary pb-1 transition-all duration-200 ease-out active:scale-95 flex items-center space-x-1.5";
+          const dot = item.nav.querySelector('span');
+          if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-primary inline-block";
+        } else {
+          item.panel.classList.add('opacity-0');
+          setTimeout(() => item.panel.classList.add('hidden'), 250);
+          
+          // Apply style_inactive_navigation
+          item.nav.className = "text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors duration-200 active:scale-95 flex items-center space-x-1.5";
+          const dot = item.nav.querySelector('span');
+          if (dot) dot.className = "w-1.5 h-1.5 rounded-full bg-outline-variant inline-block";
+        }
+      });
+    }
+
+    // Contextual Intelligence Panel actions in Workspace
+    function selectAnomaly(id) {
+      const panel = document.getElementById('context-panel');
+      const title = document.getElementById('panel-title');
+      const sub = document.getElementById('panel-subtitle');
+      panel.classList.remove('hidden');
+      panel.style.transform = 'translateX(0)';
+
+      if (id === 'A-001') {
+        title.innerText = 'ANOMALY A-001';
+        sub.innerText = 'GHOST NET CONGLOMERATE';
+      } else if (id === 'A-002') {
+        title.innerText = 'ANOMALY A-002';
+        sub.innerText = 'SUBMERGED METALLIC DRUM';
+      } else {
+        title.innerText = 'ANOMALY A-003';
+        sub.innerText = 'UNIDENTIFIED BENTHIC TARGET';
+      }
+    }
+
+    function closeAnomalyPanel() {
+      const panel = document.getElementById('context-panel');
+      panel.style.transform = 'translateX(100%)';
+      setTimeout(() => panel.classList.add('hidden'), 250);
+    }
+
+    // Mouse coordinates updater on Workspace Canvas
+    const workspaceCanvas = document.getElementById('workspace-canvas');
+    const telemetryBadge = document.getElementById('map-telemetry-badge');
+    if (workspaceCanvas && telemetryBadge) {
+      workspaceCanvas.addEventListener('mousemove', (e) => {
+        const rect = workspaceCanvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const lat = (23.4 + (y / rect.height) * 0.1).toFixed(4);
+        const lon = (68.1 + (x / rect.width) * 0.2).toFixed(4);
+        const depth = (120 + ((x + y) / (rect.width + rect.height)) * 180).toFixed(1);
+        telemetryBadge.innerHTML = `<span>CURSOR: ${lat}°N ${lon}°E</span><span class="text-outline-variant">·</span><span>DEPTH: <strong class="text-primary font-normal">${depth} m</strong></span><span class="text-outline-variant">·</span><span>SUBSTRATE: <strong class="text-secondary font-normal">CALCIFIED SILT</strong></span>`;
+      });
+    }
+
+    // Side-scan Waterfall toggle
+    function setSonarView(mode) {
+      const overlay = document.getElementById('ai-segment-overlay');
+      const btnRaw = document.getElementById('toggle-raw');
+      const btnSeg = document.getElementById('toggle-seg');
+      if (mode === 'raw') {
+        overlay.classList.add('hidden');
+        btnRaw.className = "px-2.5 py-1 rounded bg-primary-container/20 text-primary border border-primary-container/40 transition-colors";
+        btnSeg.className = "px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface transition-colors";
+      } else {
+        overlay.classList.remove('hidden');
+        btnSeg.className = "px-2.5 py-1 rounded bg-primary-container/20 text-primary border border-primary-container/40 transition-colors";
+        btnRaw.className = "px-2.5 py-1 rounded text-on-surface-variant hover:text-on-surface transition-colors";
+      }
+    }
+
+    // Mock micro-interactions
+    function simulateDispersal() {
+      alert("Acoustic Dispersal Simulation Run: Current vector 0.82 kt pushes debris 1.2 nautical miles WNW over 72 hours.");
+    }
+    function addToMissionReport() {
+      alert("Anomaly A-001 appended to Mission Transect 07 registry ledger.");
+    }
+    function handleDecision(type) {
+      alert(`Operator authorization recorded: Target marked as [${type}]. Model weights updated.`);
+    }
+    function downloadReport() {
+      alert("Generating Official Cartographic Hydrographic Report (PDF/GeoJSON bundle)...");
+    }
+    function toggleLayerDrawer() {
+      switchView('view-workspace');
+    }
+    function toggleSensorHUD() {
+      switchView('view-landing');
+    }
+  </script>
+</body></html>

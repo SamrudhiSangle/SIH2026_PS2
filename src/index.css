@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-base: #060a10;
+    --color-surface-panel: #0e1626;
+    --color-primary-cyan: #38bdf8;
+    --color-secondary-teal: #4fdbc8;
+  }
+
+  body {
+    background-color: #060a10;
+    color: #f1f5f9;
+    font-family: 'Hanken Grotesk', sans-serif;
+  }
+}
+
+/* Radar sweep animation */
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-sweep {
+  animation: radarSweep 8s linear infinite;
+  transform-origin: center center;
+}
+
+.radar-sweep-slow {
+  animation: radarSweep 14s linear infinite;
+  transform-origin: center center;
+}
+
+/* Ping Pulse */
+@keyframes pingSlow {
+  0% { transform: scale(0.85); opacity: 0.85; }
+  50% { transform: scale(1.8); opacity: 0.25; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.sonar-ping {
+  animation: pingSlow 3.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.sonar-ping-fast {
+  animation: pingSlow 1.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Vector current flow drift */
+@keyframes flowDrift {
+  0% { stroke-dashoffset: 240; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.flow-line {
+  stroke-dasharray: 8 16;
+  animation: flowDrift 7s linear infinite;
+}
+
+.flow-line-fast {
+  stroke-dasharray: 6 12;
+  animation: flowDrift 4s linear infinite;
+}
+
+/* Ambient glow & pulse */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.45; }
+}
+
+.pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+/* Custom subtle scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #060a10;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Sonar Waterfall Scanline scan effect */
+@keyframes scanlineAnim {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.sonar-scanline {
+  animation: scanlineAnim 4s linear infinite;
+}
+
+/* Reticle crosshair styling */
+.reticle-hairline {
+  background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.4) 50%, transparent 100%);
+}
+
+/* Glassmorphism custom blur panel */
+.glass-panel {
+  background: rgba(14, 22, 38, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.glass-panel-deep {
+  background: rgba(8, 13, 22, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
