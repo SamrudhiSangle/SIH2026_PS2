@@ -1,0 +1,140 @@
+"""Model Loader Service.
+
+Provides robust, cached loading for Side-Scan Sonar detection models.
+Safely handles unpacked Ultralytics checkpoint directories without modifying
+original model files, caching instantiated models in memory to prevent
+redundant initialization overhead.
+"""
+
+import os
+import shutil
+import zipfile
+from pathlib import Path
+from typing import Dict, Optional
+from ultralytics import YOLO
+
+from app.core.model_registry import (
+    ModelDefinition,
+    ModelNotFoundError,
+    get_model_definition,
+    resolve_model_path,
+)
+
+
+class ModelLoadError(RuntimeError):
+    """Raised when an existing model fails to load into memory."""
+    pass
+
+
+# Global in-memory cache holding initialized model instances
+_LOADED_MODELS: Dict[str, YOLO] = {}
+
+# Directory for runtime container archives (leaves backend/models/ pristine)
+CACHE_DIR = Path(__file__).resolve().parent.parent.parent / ".cache" / "packaged_models"
+
+
+def _ensure_packaged_pt(definition: ModelDefinition, source_path: Path) -> Path:
+    """Ensure a standard PyTorch ZIP container exists for an unpacked checkpoint directory.
+
+    Ultralytics and PyTorch require a single ZIP container (.pt) with an internal
+    archive directory prefix. This function packages the unpacked directory into a
+    local runtime cache without altering the source directory.
+    """
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    target_pt = CACHE_DIR / f"{definition.key}.pt"
+
+    # Check if target already exists and is newer than source data.pkl
+    source_pkl = source_path / "data.pkl"
+    if not source_pkl.exists():
+        raise ModelLoadError(
+            f"Model directory '{source_path}' is missing essential 'data.pkl' checkpoint file."
+        )
+
+    src_mtime = source_pkl.stat().st_mtime
+    if target_pt.exists() and target_pt.stat().st_mtime >= src_mtime:
+        return target_pt
+
+    # Create PyTorch zip container
+    temp_pt = CACHE_DIR / f"{definition.key}.tmp.pt"
+    try:
+        with zipfile.ZipFile(temp_pt, "w", compression=zipfile.ZIP_STORED) as zf:
+            for root, _, files in os.walk(source_path):
+                for f in files:
+                    full_p = Path(root) / f
+                    rel_p = full_p.relative_to(source_path).as_posix()
+                    # PyTorch inline container requires top-level archive prefix
+                    archive_path = f"{definition.key}/{rel_p}"
+                    zf.write(full_p, archive_path)
+
+        # Atomic rename to final target
+        if target_pt.exists():
+            target_pt.unlink()
+        temp_pt.rename(target_pt)
+    except Exception as e:
+        if temp_pt.exists():
+            temp_pt.unlink()
+        raise ModelLoadError(
+            f"Failed to package unpacked model '{definition.name}' from '{source_path}': {e}"
+        ) from e
+
+    return target_pt
+
+
+def load_model(name_or_key: str, force_reload: bool = False) -> YOLO:
+    """Load a model by name or key, returning a cached instance if available.
+
+    Args:
+        name_or_key: Registered model key or human-readable name.
+        force_reload: If True, bypasses memory cache and reloads from disk.
+
+    Returns:
+        Ultralytics YOLO model instance ready for inference.
+
+    Raises:
+        ModelNotFoundError: If the model is not registered.
+        ModelLoadError: If loading from disk or initialization fails.
+    """
+    definition = get_model_definition(name_or_key)
+
+    if not force_reload and definition.key in _LOADED_MODELS:
+        return _LOADED_MODELS[definition.key]
+
+    source_path = resolve_model_path(definition)
+    if not source_path.exists():
+        raise ModelLoadError(
+            f"Model '{definition.name}' directory not found at resolved path: {source_path}"
+        )
+
+    try:
+        packaged_pt_path = _ensure_packaged_pt(definition, source_path)
+        # Load through Ultralytics YOLO with explicit task
+        model_instance = YOLO(str(packaged_pt_path), task=definition.task)
+
+        # Store in memory cache
+        _LOADED_MODELS[definition.key] = model_instance
+        return model_instance
+    except ModelLoadError:
+        raise
+    except Exception as e:
+        raise ModelLoadError(
+            f"Failed to initialize Ultralytics model '{definition.name}' from '{source_path}': {e}"
+        ) from e
+
+
+def get_loaded_models() -> Dict[str, YOLO]:
+    """Return all currently loaded model instances in memory."""
+    return dict(_LOADED_MODELS)
+
+
+def is_model_loaded(name_or_key: str) -> bool:
+    """Check if a specific model is already resident in memory."""
+    try:
+        definition = get_model_definition(name_or_key)
+        return definition.key in _LOADED_MODELS
+    except ModelNotFoundError:
+        return False
+
+
+def clear_model_cache() -> None:
+    """Clear in-memory cache and unload models."""
+    _LOADED_MODELS.clear()

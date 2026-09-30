@@ -1,0 +1,70 @@
+{
+  "version": "1.0.0",
+  "description": "Verified registry of trained Side-Scan Sonar detection models extracted directly from model checkpoint metadata",
+  "models": [
+    {
+      "name": "Cylinder",
+      "path": "backend/models/Cylinder model/best",
+      "framework": "ultralytics",
+      "architecture": "YOLO12s",
+      "task": "detect",
+      "input_size": [1536, 1536],
+      "classes": {
+        "0": "Cylinder"
+      },
+      "status": "verified"
+    },
+    {
+      "name": "GhostVision",
+      "path": "backend/models/GhostVision_YOLO12s_best.pt/best",
+      "framework": "ultralytics",
+      "architecture": "YOLO12s",
+      "task": "detect",
+      "input_size": [640, 640],
+      "classes": {
+        "0": "Crab-Pot"
+      },
+      "status": "verified"
+    },
+    {
+      "name": "Mines",
+      "path": "backend/models/Mine_YOLO12s_best.pt/best",
+      "framework": "ultralytics",
+      "architecture": "YOLO12s",
+      "task": "detect",
+      "input_size": [640, 640],
+      "classes": {
+        "0": "MILCO",
+        "1": "NOMBO"
+      },
+      "status": "verified"
+    },
+    {
+      "name": "Shipwreck",
+      "path": "backend/models/shipwreak model/best",
+      "framework": "ultralytics",
+      "architecture": "YOLO26n",
+      "task": "detect",
+      "input_size": [640, 640],
+      "classes": {
+        "0": "Class_0",
+        "1": "MILCO",
+        "2": "NOMBO",
+        "3": "Shipwreck"
+      },
+      "status": "verified"
+    },
+    {
+      "name": "SubPipes",
+      "path": "backend/models/SubPipeMini2_YOLO12s_best.pt.pt/best",
+      "framework": "ultralytics",
+      "architecture": "YOLO12s",
+      "task": "detect",
+      "input_size": [640, 640],
+      "classes": {
+        "0": "Pipeline"
+      },
+      "status": "verified"
+    }
+  ]
+}

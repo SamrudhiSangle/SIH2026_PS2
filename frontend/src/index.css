@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg-base: #060911;
+    --color-surface-panel: #0b111e;
+    --color-surface-raised: #101826;
+    --color-primary-accent: #2dd4bf;
+    --color-secondary-teal: #14b8a6;
+    --color-border-subtle: #192436;
+  }
+
+  body {
+    background-color: #060911;
+    color: #f1f5f9;
+    font-family: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: 'Newsreader', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Precision Instrument Utility Styles */
+.instrument-panel {
+  background-color: #0b111e;
+  border: 1px solid #1a2638;
+}
+
+.instrument-card {
+  background-color: #0d1422;
+  border: 1px solid #1b283d;
+}
+
+.instrument-border {
+  border-color: #1a2638;
+}
+
+/* Hairline technical separators */
+.separator-hairline {
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+/* Precision instrument button */
+.btn-instrument {
+  border-radius: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 150ms ease-in-out;
+}
+
+/* Subtle, dignified scrollbars for technical instrumentation */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #060911;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b283d;
+  border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3c56;
+}
+
+/* Restrained Sonar Grid Pattern */
+.sonar-grid-bg {
+  background-image: radial-gradient(rgba(45, 212, 191, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Subtle Scanline for Waterfall Sonar */
+@keyframes subtleScan {
+  0% { transform: translateY(0%); }
+  100% { transform: translateY(100%); }
+}
+
+.sonar-subtle-scan {
+  animation: subtleScan 8s linear infinite;
+}
+
+/* Print Styles for Survey Dossiers */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+  header, nav, button, .no-print {
+    display: none !important;
+  }
+}
+
+/* ======================================================== */
+/* LEAFLET NAUTICAL GIS MAP STYLES                         */
+/* ======================================================== */
+.leaflet-container {
+  background-color: #030712 !important;
+  font-family: inherit !important;
+}
+
+.custom-gis-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gis-marker-container {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gis-marker-ring {
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  border: 1.5px solid #2dd4bf;
+  background: rgba(7, 16, 29, 0.7);
+  transition: all 0.2s ease-out;
+}
+
+.gis-marker-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #2dd4bf;
+}
+
+.gis-marker-label {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #040812;
+  border: 1px solid #1a2638;
+  color: #f1f5f9;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 0 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Selected Marker State */
+.gis-marker-container.selected .gis-marker-ring {
+  inset: 1px;
+  border-color: #38bdf8;
+  background: rgba(14, 165, 233, 0.25);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+  animation: pulseSubtle 1.8s infinite;
+}
+
+.gis-marker-container.selected .gis-marker-dot {
+  background: #ffffff;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.gis-marker-container.selected .gis-marker-label {
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+/* Review Required Marker State */
+.gis-marker-container.review .gis-marker-ring {
+  border-color: #fbbf24;
+}
+
+.gis-marker-container.review .gis-marker-dot {
+  background: #fbbf24;
+}
+
+/* Nautical Tooltips & Popups */
+.gis-swath-tooltip {
+  background: #040812 !important;
+  border: 1px solid #1a2638 !important;
+  color: #8ea4bf !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  border-radius: 2px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+}
+
+.nautical-leaflet-popup .leaflet-popup-content-wrapper {
+  background: #060b16 !important;
+  border: 1px solid #1a2638 !important;
+  border-radius: 2px !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75) !important;
+  padding: 0 !important;
+}
+
+.nautical-leaflet-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+.nautical-leaflet-popup .leaflet-popup-tip {
+  background: #060b16 !important;
+  border: 1px solid #1a2638 !important;
+}
+
+.gis-popup-content {
+  padding: 10px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.gis-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #162234;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.gis-popup-header .gis-code {
+  font-weight: 700;
+  color: #38bdf8;
+  font-size: 10px;
+}
+
+.gis-popup-header .gis-class {
+  font-weight: 600;
+  color: #f8fafc;
+  font-size: 11px;
+}
+
+.gis-popup-body .gis-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  font-size: 10px;
+}
+
+.gis-popup-body .gis-lbl {
+  color: #7d93ad;
+}
+
+.gis-popup-body .gis-val {
+  color: #e2e8f0;
+}
+
+.gis-popup-body .text-cyan {
+  color: #2dd4bf;
+  font-weight: 600;
+}
+
+.gis-popup-body .text-amber {
+  color: #fbbf24;
+}
+
+.gis-popup-body .text-teal {
+  color: #2dd4bf;
+}
