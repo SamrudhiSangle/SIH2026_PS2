@@ -342,7 +342,7 @@ export default function App() {
               isAnalyzing={isAnalyzing}
               analysisError={analysisError}
               onRunAnalysis={handleRunAnalysis}
-              evidenceUrl={analysisResult?.evidence_url ? `${API_BASE_URL}${analysisResult.evidence_url}` : null}
+              evidenceUrl={analysisResult?.evidence_url ? (analysisResult.evidence_url.startsWith('http') ? analysisResult.evidence_url : `${API_BASE_URL}${analysisResult.evidence_url}`) : null}
             />
           </div>
         )}

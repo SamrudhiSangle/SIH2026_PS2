@@ -5,7 +5,7 @@
  * Base URL configurable via VITE_API_BASE_URL.
  */
 
-export const API_BASE_URL = (import.meta.env?.VITE_API_BASE_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '');
+export const API_BASE_URL = (import.meta.env?.VITE_API_BASE_URL || 'http://localhost:8000').replace(/\/+$/, '');
 
 export class ApiError extends Error {
   constructor(message, status, data = null, userFriendlyMessage = null) {
@@ -166,7 +166,7 @@ export async function analyzeSonarImage(imageFile, options = {}) {
       `Network connection failed: ${err.message}`,
       0,
       null,
-      'Unable to connect to the SonarOps backend at http://127.0.0.1:8000. Please verify the server is running.'
+      `Unable to connect to the SonarOps backend at ${API_BASE_URL}. Please verify the server is running.`
     );
   }
 

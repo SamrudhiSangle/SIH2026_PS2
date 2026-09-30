@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Layers, Sliders, Volume2, VolumeX, ArrowUpRight, FileSpreadsheet } from 'lucide-react';
 import { soundFx } from '../utils/audio';
+import { API_BASE_URL } from '../services/api';
 
 export default function TopAppBar({ 
   currentView, 
@@ -133,7 +134,7 @@ export default function TopAppBar({
         {/* Backend API Connection Status Badge */}
         <div 
           className="hidden sm:flex items-center space-x-1.5 font-mono text-[10px] px-2 py-1 rounded-sm bg-[#09111e]/70 border border-[#1b2a3f] text-[#8ea4bf]"
-          title={backendHealth?.connected ? 'Backend API operational (http://127.0.0.1:8000)' : 'Backend API offline (http://127.0.0.1:8000)'}
+          title={backendHealth?.connected ? `Backend API operational (${API_BASE_URL})` : `Backend API offline (${API_BASE_URL})`}
         >
           <span className={`w-1.5 h-1.5 rounded-full ${backendHealth?.connected ? 'bg-primary shadow-[0_0_6px_rgba(45,212,191,0.6)]' : 'bg-amber-400'}`}></span>
           <span className="text-[#50637c]">API:</span>
